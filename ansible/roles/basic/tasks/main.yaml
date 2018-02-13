@@ -1,0 +1,31 @@
+- name: Update apt packages
+  apt:
+    update_cache: yes
+
+- name: "Installing required software"
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - supervisor
+    - git
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+- name: "Adding GPG keys"
+  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add
+
+- name: "Adding docker repository"
+  shell: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+- name: Update apt packages
+  apt:
+    update_cache: yes
+
+- name: "Installing docker-ce"
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - docker-ce
+
+- name: "Making sure supervisord is enabled and installed"
+  service: name=supervisor state=started enabled=yes

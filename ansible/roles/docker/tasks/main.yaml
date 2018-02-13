@@ -1,0 +1,23 @@
+- name: "Copying docker config files"
+  copy:
+    src: docker-image/
+    dest: /opt/run/webphp/
+
+- name: "Copying supervisor config files"
+  copy:
+    src: config/
+    dest: /opt/run/webphp/
+
+- name: "Building the docker image"
+  shell: "docker build -t uniqcast:latest -f /opt/run/webphp/Dockerfile /opt/run/webphp/."
+
+- name: "Starting docker container"
+  shell: "docker run -d -p 8080:80 uniqcast:latest"
+
+- name: "Copying config supervisord files"
+  copy:
+    src: "../config/supervisord.conf"
+    dest: /etc/supervisor/conf.d/supervisord.conf
+    owner: nobody
+    group: nogroup
+    mode: 0644
