@@ -1,5 +1,5 @@
 ##### Description
-Configuration files are baked into container, while logs are exposed on /home/zadatak/logs/
+Configuration files are baked into container, while logs are exposed at /home/zadatak/logs/
 
 ##### Create a virtual environment:
 ```
@@ -12,7 +12,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-##### Enter your credentials in ```hosts.ini``` file
+##### Enter your credentials in ```ansible/hosts.ini``` file
 
 ##### Run ansible playbook
 ```
