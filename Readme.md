@@ -1,3 +1,6 @@
+##### Description
+Configuration files are baked into container, while logs are exposed on /home/zadatak/logs/
+
 ##### Create a virtual environment:
 ```
 virtualenv venv -p python3.6

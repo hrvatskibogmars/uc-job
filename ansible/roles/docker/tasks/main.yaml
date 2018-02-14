@@ -12,7 +12,7 @@
   shell: "docker build -t uniqcast:latest -f /opt/run/webphp/Dockerfile /opt/run/webphp/."
 
 - name: "Starting docker container"
-  shell: "docker run -d -p 8080:80 uniqcast:latest"
+  shell: "docker run -d -v /home/zadatak/logs:/var/log/uniqcast/ -p 8080:80 uniqcast:latest"
 
 - name: "Copying config supervisord files"
   copy:
